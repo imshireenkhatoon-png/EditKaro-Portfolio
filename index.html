@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editkaro.in | Professional Video Editing</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">Editkaro.in</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <h1>We Bring Your <span class="highlight">Vision</span> to Life</h1>
+            <p>Top-tier video editing for Gaming, eCommerce, Documentaries, and more.</p>
+            <a href="#portfolio" class="btn">View Our Work</a>
+        </div>
+    </header>
+
+    <section id="portfolio" class="portfolio">
+        <div class="section-header">
+            <h2>Our Creative Work</h2>
+            <p>Filter by category to see specific styles.</p>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="gaming">Gaming</button>
+            <button class="filter-btn" data-filter="ads">eCommerce Ads</button>
+            <button class="filter-btn" data-filter="docu">Documentary</button>
+            <button class="filter-btn" data-filter="short">Short Form</button>
+        </div>
+
+                        <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="gaming" data-video-id="S5skxDUUpac"> 
+                        <div class="thumbnail">
+                            <img src="https://placehold.co/600x400/1a1a1a/orange?text=Click+to+Play" alt="Gaming Video">
+                            <div class="overlay">
+                                <div class="play-btn">▶</div> <h3>High Octane Gameplay</h3>
+                                <p>Gaming</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item" data-category="ads" data-video-id="Mmk7QzvwGrs">
+                        <div class="thumbnail">
+                            <img src="https://placehold.co/600x400/1a1a1a/blue?text=Click+to+Play" alt="Ad Video">
+                            <div class="overlay">
+                                <div class="play-btn">▶</div>
+                                <h3>Sneaker Launch</h3>
+                                <p>eCommerce Ad</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item" data-category="docu" data-video-id="es4x5R-rV9s">
+                        <div class="thumbnail">
+                            <img src="https://placehold.co/600x400/1a1a1a/green?text=Click+to+Play" alt="Docu Video">
+                            <div class="overlay">
+                                <div class="play-btn">▶</div>
+                                <h3>Nature's Path</h3>
+                                <p>Documentary Style</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="portfolio-item" data-category="short" data-video-id="6FOyIT5_IWw">
+                        <div class="thumbnail">
+                            <img src="https://placehold.co/600x400/1a1a1a/purple?text=Click+to+Play" alt="Short Form">
+                            <div class="overlay">
+                                <div class="play-btn">▶</div>
+                                <h3>Viral Reel</h3>
+                                <p>Short Form</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lightbox" id="lightbox">
+                    <div class="lightbox-content">
+                        <span class="close-btn">&times;</span>
+                        <iframe id="video-frame" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                    </div>
+                </div>
+                     
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Ready to Edit?</h2>
+        <p>Let's create something amazing together.</p>
+        <a href="mailto:contact@editkaro.in" class="btn">Get in Touch</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Editkaro.in. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
