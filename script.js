@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // --- FILTERING LOGIC ---
+    // --- 1. PORTFOLIO FILTERING ---
     const filterButtons = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
 
@@ -22,49 +22,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- LIGHTBOX (VIDEO PLAYER) LOGIC ---
+    // --- 2. LIGHTBOX (VIDEO PLAYER) ---
     const lightbox = document.getElementById('lightbox');
     const videoFrame = document.getElementById('video-frame');
     const closeBtn = document.querySelector('.close-btn');
 
-    // Function to open lightbox
     portfolioItems.forEach(item => {
         item.addEventListener('click', () => {
             const videoId = item.getAttribute('data-video-id');
-            
             if (videoId) {
-                // Set the YouTube embed URL
-                // 'autoplay=1' starts video automatically
-                const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-                videoFrame.src = embedUrl;
-                
-                // Show the lightbox
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
                 lightbox.classList.add('active');
             }
         });
     });
 
-    // Function to close lightbox
     const closeLightbox = () => {
         lightbox.classList.remove('active');
-        // Stop the video by clearing the source
         videoFrame.src = '';
     };
 
-    // Close on button click
-    closeBtn.addEventListener('click', closeLightbox);
+    if(closeBtn) closeBtn.addEventListener('click', closeLightbox);
+    if(lightbox) lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
 
-    // Close on clicking outside the video
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            closeLightbox();
-        }
-    });
-    
-    // Close on Escape key
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && lightbox.classList.contains('active')) {
-            closeLightbox();
-        }
-    });
+     
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxHeGgunkQSn3fuquTfB5qmBSpMwKk6WjiiJBa3RxqvDcq9DCT_pkcfB9hJ2kvO-SSL/exec'; 
+
+    const emailForm = document.forms['submit-to-google-sheet-email'];
+    const contactForm = document.forms['submit-to-google-sheet-contact'];
+    const emailMsg = document.getElementById('email-msg');
+    const contactMsg = document.getElementById('contact-msg');
+
+    const submitForm = (form, msgElement) => {
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            if(msgElement) msgElement.innerHTML = "Sending...";
+            
+      
+            fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+                .then(response => {
+                    if(msgElement) msgElement.innerHTML = "Thank you! We will contact you soon.";
+                    form.reset();
+                    setTimeout(() => { if(msgElement) msgElement.innerHTML = ""; }, 5000);
+                    console.log("Success! Data sent to Google Sheet.");
+                })
+                .catch(error => {
+                    if(msgElement) msgElement.innerHTML = "Error! Please try again.";
+                    console.error('Error!', error.message);
+                });
+        });
+    };
+
+    if(emailForm) submitForm(emailForm, emailMsg);
+    if(contactForm) submitForm(contactForm, contactMsg);
 });
